@@ -18,45 +18,48 @@ Set-ADForest [-WhatIf] [-Confirm] [-AuthType <ADAuthType>] [-Credential <PSCrede
 ```
 
 ## DESCRIPTION
-The Set-ADForest cmdlet modifies the properties of an Active Directory forest.
+&emsp;The `Set-ADForest` cmdlet modifies the properties of an Active Directory forest.
 You can modify commonly used property values by using the cmdlet parameters.
-Property values that are not associated with cmdlet parameters can be modified by using the Add, Replace, Clear and Remove parameters.
+Property values that are not associated with cmdlet parameters can be modified by using the `Add`, `Replace`, `Clear` and `Remove` parameters.
 
-The Identity parameter specifies the Active Directory forest to modify.
-You can identify a forest by its fully qualified domain name (FQDN), GUID, DNS host name, or NetBIOS name.
+&emsp;**The Identity parameter specifies the Active Directory forest to modify.**
+You can identify a forest by its *Fully Qualified Domain Name (FQDN)*, *GUID*, *DNS host name*, or *NetBIOS name*.
 You can also set the Identity parameter to an object variable such as $\<localADForestObject\>, or you can pass an object through the pipeline to the Identity parameter.
-For example, you can use the Get-ADForest cmdlet to retrieve a forest object and then pass the object through the pipeline to the Set-ADForest cmdlet.
+For example, you can use the `Get-ADForest` cmdlet to retrieve a forest object and then pass the object through the pipeline to the `Set-ADForest` cmdlet.
 
-The Instance parameter provides a way to update a forest object by applying the changes made to a copy of the object.
-When you set the Instance parameter to a copy of an Active Directory forest object that has been modified, the Set-ADForest cmdlet makes the same changes to the original forest object.
-To get a copy of the object to modify, use the Get-ADForest object.
+&emsp;**The Instance parameter provides a way to update a forest object by applying the changes made to a copy of the object.**
+When you set the Instance parameter to a copy of an Active Directory forest object that has been modified, the `Set-ADForest` cmdlet makes the same changes to the original forest object.
+To get a copy of the object to modify, use the `Get-ADForest` object.
 The Identity parameter is not allowed when you use the Instance parameter.
 For more information about the Instance parameter, see the Instance parameter description.
 
 The following examples show how to modify the UPNSuffixes property of a forest object by using three methods:
 
--By specifying the Identity and the UPNSuffixes parameters
+- By specifying the Identity and the UPNSuffixes parameters
 
--By passing a forest object through the pipeline and specifying the UPNSuffixes parameter
+- By passing a forest object through the pipeline and specifying the UPNSuffixes parameter
 
--By specifying the Instance parameter.
+- By specifying the Instance parameter.
 
-Method 1: Modify the UPNSuffixes property for the fabrikam.com forest by using the Identity and UPNSuffixes parameters.
+Method 1: Modify the UPNSuffixes property for the *fabrikam.com* forest by using the Identity and UPNSuffixes parameters.
 
+```powershell
 Set-ADForest -Identity fabrikam.com -UPNSuffixes @{replace="fabrikam.com","fabrikam","corp.fabrikam.com"}
+```
 
-Method 2: Modify the UPNSuffixes property for the fabrikam.com forest by passing the fabrikam.com forest through the pipeline and specifying the UPNSuffixes parameter.
-
+Method 2: Modify the UPNSuffixes property for the *fabrikam.com* forest by passing the fabrikam.com forest through the pipeline and specifying the UPNSuffixes parameter.
+```powershell
 Get-ADForest -Identity fabrikam.com | Set-ADForest -UPNSuffixes @{replace="fabrikam.com","fabrikam","corp.fabrikam.com"}
-
-Method 3: Modify the UPNSuffixes property for the fabrikam.com forest by using the Windows PowerShell command line to modify a local instance of the fabrikam.com forest.
+```
+Method 3: Modify the UPNSuffixes property for the *fabrikam.com* forest by using the Windows PowerShell command line to modify a local instance of the fabrikam.com forest.
 Then set the Instance parameter to the local instance.
-
+```powershell
 $forest = Get-ADForest -Identity fabrikam.com
 
 $forest.UPNSuffixes = "fabrikam.com","fabrikam","corp.fabrikam.com"
 
 Set-ADForest -Instance $forest.
+```
 
 ## EXAMPLES
 
@@ -69,7 +72,7 @@ Description
 
 -----------
 
-Set the UPNSuffixes property on the fabrikam.com forest.
+&emsp;Set the UPNSuffixes property on the fabrikam.com forest.
 
 ### -------------------------- EXAMPLE 2 --------------------------
 ```
@@ -80,7 +83,7 @@ Description
 
 -----------
 
-Add corp.fabrikam.com to the SPNSuffixes property on the forest fabrikam.com
+&emsp;Add corp.fabrikam.com to the SPNSuffixes property on the forest fabrikam.com
 
 ### -------------------------- EXAMPLE 3 --------------------------
 ```
@@ -102,7 +105,7 @@ Description
 
 -----------
 
-Get the forest of the current logged on user and clear the UPNSuffixes property.
+&emsp;Get the forest of the current logged on user and clear the UPNSuffixes property.
 
 ## PARAMETERS
 
@@ -401,7 +404,7 @@ Accept wildcard characters: False
 
 ### -WhatIf
 Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
+The cmdlet will not run.
 
 ```yaml
 Type: SwitchParameter
